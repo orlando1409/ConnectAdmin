@@ -6,6 +6,7 @@
   "author": "Estefano Castañeda <mixc21@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "all": "^0.0.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
     "babel-plugin-add-module-exports": "^0.2.1",
