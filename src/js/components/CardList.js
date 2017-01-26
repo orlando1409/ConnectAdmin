@@ -26,4 +26,4 @@ const CardList = () => (
   </Card>
 )
 
-export default CardExampleIndividualCard
+export default CardList
