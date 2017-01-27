@@ -1,56 +1,25 @@
 import React from "react";
 import CardList from '../components/CardList'
 import { Button, Icon, Grid, Divider, Segment } from 'semantic-ui-react'
+import PopupBtn from '../components/PopupBtn'
 
 export default class Dashboard extends React.Component {
   render () {
     return (
-      <div>
+      <div class="child-container">
 
         <h2>Quick Actions</h2>
 
         <Segment>
           <Grid stackable columns={3}>
+              <PopupBtn icon="send" content="Send notifications" />
+              <PopupBtn icon="bookmark" content="Give badges" />
+              <PopupBtn icon="group" content="Recommend groups" />
 
-              <Grid.Column>
-                <Button fluid positive>
-                  <Icon name='twitter' />
-                  Send a notification
-                </Button>
-              </Grid.Column>
-              <Grid.Column>
-                <Button fluid positive>
-                  <Icon name='twitter' />
-                  Give badges
-                </Button>
-              </Grid.Column>
-              <Grid.Column>
-                <Button fluid positive>
-                  <Icon name='twitter' />
-                  Give recommendations to groups
-                </Button>
-              </Grid.Column>
+              <PopupBtn icon="calendar plus" content="Create events" />
+              <PopupBtn icon="plus circle" content="Create badges" />
+              <PopupBtn icon="tags" content="Create tags" />
 
-          </Grid>
-          <Grid stackable columns={3}>
-            <Grid.Column>
-              <Button fluid primary>
-                <Icon name='twitter' />
-                Create an event
-              </Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button fluid primary>
-                <Icon name='twitter' />
-                Create badges
-              </Button>
-            </Grid.Column>
-            <Grid.Column>
-              <Button fluid primary>
-                <Icon name='twitter' />
-                Create tags
-              </Button>
-            </Grid.Column>
           </Grid>
         </Segment>
 

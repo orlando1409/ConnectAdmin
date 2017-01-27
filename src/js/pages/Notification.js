@@ -1,9 +1,13 @@
 import React from "react";
+import MenuTab from "../components/MenuTab";
 
 export default class Notification extends React.Component {
   render () {
     return (
-      <h1>Notification</h1>
+      <div class="child-container">
+        <h1>Notification</h1>
+        <MenuTab />
+      </div>
     )
   }
 }

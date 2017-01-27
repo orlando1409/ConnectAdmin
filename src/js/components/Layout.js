@@ -1,41 +1,71 @@
 import React, { Component } from 'react'
-import { Sidebar, Segment, Button, Menu, Image, Icon, Header } from 'semantic-ui-react'
+import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
+import { SidebarMenu } from './SidebarMenu'
 
 class Layout extends Component {
-  state = { visible: false,
-            menuItem: 'Dashboard'
+
+  state = {
+            visibleLeft: false,
+            activeItem: 'Dashboard'
           }
 
-  toggleVisibility = () => this.setState({ visible: !this.state.visible });
-
-  setMenuItem = (e, props) => this.setState({menuItem: props.name});
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  toggleVisibilityLeft = () => this.setState({ visibleLeft: !this.state.visibleLeft });
 
   render() {
-    const { visible, menuItem } = this.state
+    const { visibleLeft, activeItem } = this.state
     return (
       <div>
         <Segment color="orange" inverted>
             <Menu color="orange" secondary inverted>
-              <Menu.Item name='' icon="content" onClick={this.toggleVisibility} />
+              <Menu.Item name='' icon="content" onClick={this.toggleVisibilityLeft} />
               <div class="item">
-                <h3>{this.state.menuItem}</h3>
+                <h3>Belatrix Connect</h3>
               </div>
             </Menu>
 
         </Segment>
         <Sidebar.Pushable as={Segment}>
-          <Sidebar as={Menu} animation='scale down' width='thin' visible={visible} icon='labeled' vertical inverted>
-            <Menu.Item href="#/" name='Dashboard' onClick={this.setMenuItem}>
+          <Sidebar color="blue" as={Menu} animation='slide along' width='thin' visible={visibleLeft} icon='labeled' vertical inverted>
+            <Menu.Item href="#/" name='Dashboard' active={activeItem === 'Dashboard'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
               <Icon name='dashboard' />
               Dashboard
             </Menu.Item>
-            <Menu.Item href="#/ranking" name='Ranking' onClick={this.setMenuItem}>
+            <Menu.Item href="#/notification" name='Notification' active={activeItem === 'Notification'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft} >
+            <Icon name='alarm' />
+            Notification
+            </Menu.Item>
+            <Menu.Item href="#/ranking" name='Ranking' active={activeItem === 'Ranking'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
               <Icon name='ordered list' />
               Ranking
             </Menu.Item>
-            <Menu.Item href="#/notification" name='Notification' onClick={this.setMenuItem}>
-              <Icon name='alarm outline' />
-              Notification
+            <Menu.Item href="#/ranking" name='Badges' active={activeItem === 'Badges'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='bookmark' />
+              Badges
+            </Menu.Item>
+            <Menu.Item href="#/" name='Recomendations' active={activeItem === 'Recomendations'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='certificate' />
+              Recomendations
+            </Menu.Item>
+            <Menu.Item href="#/" name='Events' active={activeItem === 'Events'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='calendar' />
+              Events
+            </Menu.Item>
+            <Menu.Item href="#/" name='Locations' active={activeItem === 'Locations'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='flag' />
+              Locations
+            </Menu.Item>
+            <Menu.Item href="#/" name='Employees' active={activeItem === 'Employees'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='user' />
+              Employees
+            </Menu.Item>
+            <Menu.Item href="#/" name='Categories' active={activeItem === 'Categories'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='unordered list' />
+              Categories
+            </Menu.Item>
+            <Menu.Item href="#/" name='Tags' active={activeItem === 'Tags'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
+              <Icon name='tags' />
+              Tags
             </Menu.Item>
           </Sidebar>
           <Sidebar.Pusher>
