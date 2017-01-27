@@ -1,9 +1,8 @@
-.content {
-  width: 1280px;
-  margin: 0 auto;
-}
-
 .ui.segment{
   border-radius: 0;
   margin: 0;
+}
+
+.main-container{
+  padding: 10px;
 }

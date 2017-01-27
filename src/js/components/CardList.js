@@ -1,27 +1,75 @@
 import React from 'react'
-import { Card, Icon, Image } from 'semantic-ui-react'
+import { Card, Feed } from 'semantic-ui-react'
 
-const CardList = () => (
-  <Card>
-    <Image src='http://semantic-ui.com/images/avatar2/large/matthew.png' />
+const CardList = (props) => (
+  <Card fluid>
     <Card.Content>
       <Card.Header>
-        Matthew
+        {props.header}
       </Card.Header>
-      <Card.Meta>
-        <span className='date'>
-          Joined in 2015
-        </span>
-      </Card.Meta>
-      <Card.Description>
-        Matthew is a musician living in Nashville.
-      </Card.Description>
     </Card.Content>
-    <Card.Content extra>
-      <a>
-        <Icon name='user' />
-        22 Friends
-      </a>
+    <Card.Content>
+      <Feed>
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+          <Feed.Content>
+            <Feed.Date content='1 day ago' />
+            <Feed.Summary>
+              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
+          <Feed.Content>
+            <Feed.Date content='3 days ago' />
+            <Feed.Summary>
+              You added <a>Molly Malone</a> as a friend.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+          <Feed.Content>
+            <Feed.Date content='4 days ago' />
+            <Feed.Summary>
+              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
+          <Feed.Content>
+            <Feed.Date content='1 day ago' />
+            <Feed.Summary>
+              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
+          <Feed.Content>
+            <Feed.Date content='3 days ago' />
+            <Feed.Summary>
+              You added <a>Molly Malone</a> as a friend.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+
+        <Feed.Event>
+          <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
+          <Feed.Content>
+            <Feed.Date content='4 days ago' />
+            <Feed.Summary>
+              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
+            </Feed.Summary>
+          </Feed.Content>
+        </Feed.Event>
+      </Feed>
     </Card.Content>
   </Card>
 )
