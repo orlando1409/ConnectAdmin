@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { Sidebar, Segment, Menu, Icon } from 'semantic-ui-react'
-import { SidebarMenu } from './SidebarMenu'
 
 class Layout extends Component {
 
