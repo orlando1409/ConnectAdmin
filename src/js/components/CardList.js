@@ -1,118 +1,34 @@
-import React from 'react'
-import { Card, Feed } from 'semantic-ui-react'
+import React from 'react';
+import { Card, Feed, Icon, Image, Item  } from 'semantic-ui-react';
 
-const CardList = (props) => (
-  <Card fluid>
-    <Card.Content>
-      <Card.Header>
-        {props.header}
-      </Card.Header>
-    </Card.Content>
-    <Card.Content>
-      <Feed>
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
-              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+export default class CardList extends React.Component {
+  render() {
 
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
-          <Feed.Content>
-            <Feed.Date content='3 days ago' />
-            <Feed.Summary>
-              You added <a>Molly Malone</a> as a friend.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
+    const ListItems = this.props.data.map((item) => {
+      return (<Item key={item.pk}>
+                <Item.Image size='mini' src={item.avatar} />
+                <Item.Content>
+                  <Item.Header as='a'>{item.first_name + ' ' + item.last_name}</Item.Header>
+                  <Item.Extra>
+                    <Icon color='green' name='check' /> {item.current_month_score} Points
+                  </Item.Extra>
+                </Item.Content>
+              </Item>)
+    });
 
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
-          <Feed.Content>
-            <Feed.Date content='4 days ago' />
-            <Feed.Summary>
-              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
-              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
-          <Feed.Content>
-            <Feed.Date content='3 days ago' />
-            <Feed.Summary>
-              You added <a>Molly Malone</a> as a friend.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
-          <Feed.Content>
-            <Feed.Date content='4 days ago' />
-            <Feed.Summary>
-              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
-              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar2/small/molly.png' />
-          <Feed.Content>
-            <Feed.Date content='3 days ago' />
-            <Feed.Summary>
-              You added <a>Molly Malone</a> as a friend.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/elliot.jpg' />
-          <Feed.Content>
-            <Feed.Date content='4 days ago' />
-            <Feed.Summary>
-              You added <a>Elliot Baker</a> to your <a>musicians</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-        <Feed.Event>
-          <Feed.Label image='http://semantic-ui.com/images/avatar/small/jenny.jpg' />
-          <Feed.Content>
-            <Feed.Date content='1 day ago' />
-            <Feed.Summary>
-              You added <a>Jenny Hess</a> to your <a>coworker</a> group.
-            </Feed.Summary>
-          </Feed.Content>
-        </Feed.Event>
-
-      </Feed>
-    </Card.Content>
-  </Card>
-)
-
-export default CardList
+    return (
+      <Card fluid>
+        <Card.Content>
+          <Card.Header>
+            {this.props.header}
+          </Card.Header>
+        </Card.Content>
+        <Card.Content>
+          <Item.Group>
+            {ListItems}
+          </Item.Group>
+        </Card.Content>
+      </Card>
+    )
+  }
+}

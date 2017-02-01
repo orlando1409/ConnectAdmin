@@ -1,10 +1,26 @@
 import React from "react";
-import CardList from '../components/CardList'
-import { Button, Icon, Grid, Divider, Segment } from 'semantic-ui-react'
-import PopupBtn from '../components/PopupBtn'
+import CardList from '../components/CardList';
+import { Button, Icon, Grid, Divider, Segment } from 'semantic-ui-react';
+import PopupBtn from '../components/PopupBtn';
+import TopCurrentScore from '../stores/TopCurrentScore';
+import LastMonthScore from '../stores/LastMonthScore';
+import TotalScore from '../stores/TotalScore';
 
 export default class Dashboard extends React.Component {
+
+  constructor() {
+    super();
+    this.state = {
+      topCurrentScore: TopCurrentScore.getAll(),
+      lastMonthScore: LastMonthScore.getAll(),
+      totalScore: TotalScore.getAll()
+    }
+  }
+
   render () {
+
+    const { topCurrentScore, lastMonthScore, totalScore } = this.state;
+
     return (
       <div class="child-container">
 
@@ -27,13 +43,13 @@ export default class Dashboard extends React.Component {
 
         <Grid stackable columns={3}>
           <Grid.Column>
-            <CardList header="Top current month" />
+            <CardList data={topCurrentScore} header="Top current month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top last month" />
+            <CardList data={lastMonthScore} header="Top last month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top all time" />
+            <CardList data={totalScore} header="Top all time" />
           </Grid.Column>
         </Grid>
 
