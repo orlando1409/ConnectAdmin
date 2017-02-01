@@ -17,6 +17,19 @@ export default class Dashboard extends React.Component {
     }
   }
 
+  componentWillMount() {
+    TotalScore.on("change", () => {
+      this.setState({
+        total: TotalScore.getAll()
+      });
+    })
+  }
+
+  handleItemClick = () => TotalScore.createItem({
+    "first_name": "Estefano",
+    "last_name": "Castañeda",
+  })
+
   render () {
 
     const { topCurrentScore, lastMonthScore, totalScore } = this.state;
@@ -40,6 +53,10 @@ export default class Dashboard extends React.Component {
         </Segment>
 
         <h2>Recent Activity</h2>
+
+        <Button onClick={this.handleItemClick}>
+          Create
+        </Button>
 
         <Grid stackable columns={3}>
           <Grid.Column>
