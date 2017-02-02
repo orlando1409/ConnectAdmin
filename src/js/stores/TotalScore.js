@@ -1,5 +1,7 @@
 import { EventEmitter } from "events";
 
+import dispatcher from "../dispatcher"
+
 class TotalScore extends EventEmitter {
   constructor() {
     super();
@@ -52,13 +54,29 @@ class TotalScore extends EventEmitter {
     });
 
     this.emit("change");
+
   }
 
   getAll() {
     return this.totalScore;
   }
+
+  handeleActions(action) {
+      switch (action.type) {
+        case 'CREATE_ITEM':
+          this.createItem(action.text);
+          break;
+        case 'RECEIVE_ITEMS':
+          //this.createItem(action.items);
+          this.totalScore = action.items;
+          this.emit("change");
+          break;
+      }
+  }
 }
 
 const totalScore = new TotalScore;
+dispatcher.register(totalScore.handeleActions.bind(totalScore));
+window.dispatcher = dispatcher;
 
 export default totalScore;

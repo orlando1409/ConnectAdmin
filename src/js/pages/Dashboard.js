@@ -5,6 +5,7 @@ import PopupBtn from '../components/PopupBtn';
 import TopCurrentScore from '../stores/TopCurrentScore';
 import LastMonthScore from '../stores/LastMonthScore';
 import TotalScore from '../stores/TotalScore';
+import * as ScoreActions from '../actions/ScoreActions'
 
 export default class Dashboard extends React.Component {
 
@@ -20,15 +21,22 @@ export default class Dashboard extends React.Component {
   componentWillMount() {
     TotalScore.on("change", () => {
       this.setState({
-        total: TotalScore.getAll()
+        totalScore: TotalScore.getAll()
       });
     })
   }
 
-  handleItemClick = () => TotalScore.createItem({
-    "first_name": "Estefano",
-    "last_name": "Castañeda",
-  })
+  createItem() {
+    ScoreActions.createItem({
+      "first_name": "Estefano",
+      "last_name": "Castañeda",
+    })
+  }
+
+  loadItems() {
+    ScoreActions.loadItems()
+  }
+
 
   render () {
 
@@ -36,6 +44,14 @@ export default class Dashboard extends React.Component {
 
     return (
       <div class="child-container">
+
+        <Button onClick={this.createItem.bind(this)}>
+          Create
+        </Button>
+
+        <Button onClick={this.loadItems.bind(this)}>
+          Load
+        </Button>
 
         <h2>Quick Actions</h2>
 
@@ -53,10 +69,6 @@ export default class Dashboard extends React.Component {
         </Segment>
 
         <h2>Recent Activity</h2>
-
-        <Button onClick={this.handleItemClick}>
-          Create
-        </Button>
 
         <Grid stackable columns={3}>
           <Grid.Column>
