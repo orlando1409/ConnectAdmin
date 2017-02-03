@@ -11,19 +11,26 @@ export default class Dashboard extends React.Component {
 
   constructor() {
     super();
+    this.getItems = this.getItems.bind(this);
     this.state = {
       topCurrentScore: TopCurrentScore.getAll(),
       lastMonthScore: LastMonthScore.getAll(),
       totalScore: TotalScore.getAll()
-    }
+    };
   }
 
   componentWillMount() {
-    TotalScore.on("change", () => {
-      this.setState({
-        totalScore: TotalScore.getAll()
-      });
-    })
+    TotalScore.on("change", this.getItems);
+  }
+
+  componentWillUnmount() {
+    TotalScore.removeListener("change", this.getItems);
+  }
+
+  getItems() {
+    this.setState({
+      totalScore: TotalScore.getAll()
+    });
   }
 
   createItem() {
