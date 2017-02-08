@@ -1,42 +1,19 @@
 import React from "react";
-import CardList from '../components/CardList'
-import { Button, Icon, Grid, Divider, Segment } from 'semantic-ui-react'
-import PopupBtn from '../components/PopupBtn'
+import CardList from "../components/CardList";
+import { Button, Icon, Grid, Divider, Segment } from "semantic-ui-react";
+import PopupBtn from "../components/PopupBtn";
+import { fetchUser } from "../actions/userActions"
 
-import { applyMiddleware, createStore} from "redux";
-import logger from "redux-logger";
-import thunk from "redux-thunk";
-import axios from "axios";
-import promise from "redux-promise-middleware";
+import { connect } from "react-redux";
 
-const initialState = {
-  fetching: false,
-  fetched: false,
-  user: [],
-  error: null
-}
-
-const reducer = (state={}, action) => {
-  switch (action.type) {
-    case "FETCH_USER_PENDING": {
-      return {...state, fetching: true}
-      break;
-    }
-    case "FETCH_USER_REJECTED": {
-      return {...state, fetching: false, error: action.payload}
-      break;
-    }
-    case "FETCH_USER_FULFILLED": {
-      return {...state, fetching: false, fetched: true, user: action.payload.data}
-      break;
-    }
+@connect((store) => {
+  return {
+    user: store.user.user
   }
+})
 
-  return state
-}
+/*import axios from "axios";
 
-const middleware = applyMiddleware(promise(), thunk, logger())
-const store = createStore(reducer, middleware)
 
 store.dispatch({
   type: "FETCH_USER",
@@ -44,7 +21,7 @@ store.dispatch({
     username: "ecastaneda",
     password: "allstars"
   })
-});
+});*/
 
 /*store.dispatch((dispatch) => {
   dispatch({type: "FETCH_USER"})
@@ -62,10 +39,15 @@ store.dispatch({
 
 
 export default class Dashboard extends React.Component {
+
+  componentWillMount() {
+    this.props.dispatch(fetchUser())
+  }
+
   render () {
+    console.log(this.props.user.name)
     return (
       <div class="child-container">
-
         <h2>Quick Actions</h2>
 
         <Segment>
