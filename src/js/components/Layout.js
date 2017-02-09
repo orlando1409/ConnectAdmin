@@ -15,6 +15,7 @@ class Layout extends Component {
     const { visibleLeft, activeItem } = this.state
     return (
       <div>
+
         <Segment color="orange" inverted>
             <Menu color="orange" secondary inverted>
               <Menu.Item name='' icon="content" onClick={this.toggleVisibilityLeft} />
@@ -22,8 +23,8 @@ class Layout extends Component {
                 <h3>Belatrix Connect</h3>
               </div>
             </Menu>
-
         </Segment>
+
         <Sidebar.Pushable as={Segment}>
           <Sidebar color="blue" as={Menu} animation='slide along' width='thin' visible={visibleLeft} icon='labeled' vertical inverted>
             <Menu.Item href="#/" name='Dashboard' active={activeItem === 'Dashboard'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
