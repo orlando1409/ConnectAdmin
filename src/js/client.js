@@ -6,30 +6,35 @@ import Layout from "./components/Layout";
 import Dashboard from "./pages/Dashboard";
 import Notification from "./pages/Notification";
 import Ranking from "./pages/Ranking";
-
 import Login from "./pages/Login";
 
 import { Provider } from "react-redux";
 import store from "./store";
 
 const app = document.getElementById('app');
-const dashboard = (
-  <Route path="/" component={Layout}>
-    <IndexRoute component={Dashboard}></IndexRoute>
-    <Route path="Dashboard" component={Dashboard}></Route>
-    <Route path="notification" component={Notification}></Route>
-    <Route path="ranking" component={Ranking}></Route>
-  </Route>
-)
 
-const login = (
-  <Route path="/" component={Login}>
-  </Route>
-)
+function requireAuth(nextState, replace) {
+
+    var x = false;
+
+    if(!x){
+      console.log(replace)
+      replace({
+        pathname: "/login",
+      });
+    }
+
+}
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      {login}
+      <Route path="login" component={Login}></Route>
+      <Route path="/" component={Layout} onEnter={requireAuth}>
+        <IndexRoute component={Dashboard}></IndexRoute>
+        <Route path="dashboard" component={Dashboard}></Route>
+        <Route path="notification" component={Notification}></Route>
+        <Route path="ranking" component={Ranking}></Route>
+      </Route>
     </Router>
   </Provider>, app);

@@ -1,13 +1,13 @@
 import React from 'react'
 import { Grid, Image, Button, Checkbox, Form } from 'semantic-ui-react'
 
-import { fetchUser } from "../actions/userActions"
+import { getAuth } from "../actions/authActions"
 
 import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    user: store.user.user
+    data: store.auth
   }
 })
 
@@ -16,10 +16,9 @@ export default class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
-      password: ''
+      username: 'ecastaneda',
+      password: 'allstars'
     }
-    this.handleClick = this.handleClick.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handlePassword = this.handlePassword.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,22 +31,19 @@ export default class Login extends React.Component {
     });
   }
 
-  handlePassword() {
+  handlePassword(event) {
     this.setState({
       password: event.target.value
     });
   }
 
-  handleClick(user) {
-    this.props.dispatch(fetchUser(user))
-  }
-
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.username);
+    this.props.dispatch(getAuth(this.state))
     event.preventDefault();
   }
 
   render () {
+    console.log(this.props)
     return (
       <Grid divided='vertically'>
 
@@ -55,6 +51,8 @@ export default class Login extends React.Component {
           <Grid.Column>
           </Grid.Column>
           <Grid.Column>
+            <br />
+            <Image src='./img/logo.webp'  size='tiny' centered />
           </Grid.Column>
           <Grid.Column>
           </Grid.Column>
@@ -77,10 +75,10 @@ export default class Login extends React.Component {
               <Form.Field>
                 <label>Password</label>
                 <input placeholder='Password'
-                  name="password"
+                  name='password'
                   value={this.state.password}
                   onChange={this.handlePassword}
-                  type="password" />
+                  type='password' />
               </Form.Field>
               <Button type='submit'>Login</Button>
             </Form>
