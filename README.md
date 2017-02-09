@@ -51,20 +51,22 @@ git checkout v4.4.3
 make
 ```
 1.6. Installing
+
 ```bash
 sudo make install
 ```
-2. Installing Yarn
+
+2.Installing Yarn
 
 Choose the instructions according to your OS in the next URL
 [Instructions](https://yarnpkg.com/docs/install)
 
-3. Excute the yarn command to install dependencies
+3.Excute the yarn command to install dependencies
 
 ```bash
 yarn Install
 ```
-4. Run the yarn comand to open the project 
+4.Run the yarn comand to open the project 
 
 ```bash
 yarn run dev
