@@ -1,13 +1,53 @@
 import React from "react";
-import CardList from '../components/CardList'
-import { Button, Icon, Grid, Divider, Segment } from 'semantic-ui-react'
-import PopupBtn from '../components/PopupBtn'
+import CardList from "../components/CardList";
+import { Button, Icon, Grid, Divider, Segment } from "semantic-ui-react";
+import PopupBtn from "../components/PopupBtn";
+import { fetchUser } from "../actions/userActions"
+
+import { connect } from "react-redux";
+
+@connect((store) => {
+  return {
+    user: store.user.user
+  }
+})
+
+/*import axios from "axios";
+
+
+store.dispatch({
+  type: "FETCH_USER",
+  payload: axios.post("https://bxconnect.herokuapp.com:443/api/employee/authenticate/", {
+    username: "ecastaneda",
+    password: "allstars"
+  })
+});*/
+
+/*store.dispatch((dispatch) => {
+  dispatch({type: "FETCH_USER"})
+  axios.post("https://bxconnect.herokuapp.com:443/api/employee/authenticate/", {
+    username: "ecastaneda",
+    password: "allstars"
+  }).then((response) => {
+    dispatch({type: "RECEIVE_USER", payload: response})
+  }).catch((error) => {
+    dispatch({type: "FETCH_ERROR", payload: error})
+  })
+//async
+  dispatch({type: "BAR"})
+});*/
+
 
 export default class Dashboard extends React.Component {
+
+  componentWillMount() {
+    this.props.dispatch(fetchUser())
+  }
+
   render () {
+    console.log(this.props.user.name)
     return (
       <div class="child-container">
-
         <h2>Quick Actions</h2>
 
         <Segment>
