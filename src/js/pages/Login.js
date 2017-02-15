@@ -43,7 +43,7 @@ export default class Login extends React.Component {
   }
 
   render () {
-    console.log(this.props)
+
     return (
       <Grid divided='vertically'>
 

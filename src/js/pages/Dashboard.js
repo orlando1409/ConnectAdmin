@@ -2,30 +2,26 @@ import React from "react";
 import CardList from "../components/CardList";
 import { Button, Icon, Grid, Divider, Segment } from "semantic-ui-react";
 import PopupBtn from "../components/PopupBtn";
+import { fetchCurrentScore, fetchLastMonthScore, fetchTotalScore } from "../actions/scoreActions"
+import { connect } from "react-redux";
 
-
-/*import axios from "axios";
-
-
-store.dispatch({
-  type: "FETCH_USER",
-  payload: axios.post("https://bxconnect.herokuapp.com:443/api/employee/authenticate/", {
-    username: "ecastaneda",
-    password: "allstars"
-  })
-});*/
-
-/*store.dispatch((dispatch) => {
-  dispatch({type: "FETCH_USER"})
-
-//async
-  dispatch({type: "BAR"})
-});*/
-
+@connect((store) => {
+  return {
+    data: store.score
+  }
+})
 
 export default class Dashboard extends React.Component {
 
+  componentWillMount() {
+    this.props.dispatch(fetchCurrentScore())
+    this.props.dispatch(fetchLastMonthScore())
+    this.props.dispatch(fetchTotalScore())
+  }
+
   render () {
+
+    const { currentMonth, lastMonth, total } = this.props.data;
 
     return (
       <div class="child-container">
@@ -48,13 +44,13 @@ export default class Dashboard extends React.Component {
 
         <Grid stackable columns={3}>
           <Grid.Column>
-            <CardList header="Top current month" />
+            <CardList data={currentMonth} header="Top current month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top last month" />
+            <CardList data={lastMonth} header="Top last month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top all time" />
+            <CardList data={total} header="Top all time" />
           </Grid.Column>
         </Grid>
 

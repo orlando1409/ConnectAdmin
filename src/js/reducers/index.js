@@ -2,10 +2,10 @@ import { combineReducers } from "redux"
 
 import auth from "./authReducer"
 import user from "./userReducer"
-import lastMonthScore from "./lastMonthScore"
+import score from "./scoreReducer"
 
 export default combineReducers({
   auth,
   user,
-  lastMonthScore
+  score
 })

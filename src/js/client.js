@@ -12,25 +12,31 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 const app = document.getElementById('app');
+const token = localStorage.getItem("token");
 
-function requireAuth(nextState, replace) {
+function redirectLogin(nextState, replace) {
 
-    var x = false;
-
-    if(!x){
-      console.log(replace)
+    if(!token){
       replace({
-        pathname: "/login",
+        pathname: "/login"
       });
     }
+}
 
+function redirectDashboard(nextState, replace) {
+
+    if(token){
+      replace({
+        pathname: "/dashboard"
+      });
+    }
 }
 
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="login" component={Login}></Route>
-      <Route path="/" component={Layout} onEnter={requireAuth}>
+      <Route path="login" component={Login} onEnter={redirectDashboard}></Route>
+      <Route path="/" component={Layout} onEnter={redirectLogin}>
         <IndexRoute component={Dashboard}></IndexRoute>
         <Route path="dashboard" component={Dashboard}></Route>
         <Route path="notification" component={Notification}></Route>
