@@ -29,14 +29,12 @@ export default class Dashboard extends React.Component {
 
         <Segment>
           <Grid stackable columns={3}>
-              <PopupBtn icon="send" content="Send notifications" />
-              <PopupBtn icon="bookmark" content="Give badges" />
-              <PopupBtn icon="group" content="Recommend groups" />
-
-              <PopupBtn icon="calendar plus" content="Create events" />
-              <PopupBtn icon="plus circle" content="Create badges" />
-              <PopupBtn icon="tags" content="Create tags" />
-
+              <PopupBtn href="#/notification" icon="send" content="Send notifications" />
+              <PopupBtn href="#/ranking" icon="bookmark" content="Give badges" />
+              <PopupBtn href="#/ranking" icon="group" content="Recommend groups" />
+              <PopupBtn href="#/ranking" icon="calendar plus" content="Create events" />
+              <PopupBtn href="#/ranking" icon="plus circle" content="Create badges" />
+              <PopupBtn href="#/ranking" icon="tags" content="Create tags" />
           </Grid>
         </Segment>
 

@@ -38,7 +38,7 @@ export default class Login extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.dispatch(getAuth(this.state))
+    this.props.dispatch(getAuth(this))
     event.preventDefault();
   }
 
