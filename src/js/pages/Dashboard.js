@@ -2,64 +2,39 @@ import React from "react";
 import CardList from "../components/CardList";
 import { Button, Icon, Grid, Divider, Segment } from "semantic-ui-react";
 import PopupBtn from "../components/PopupBtn";
-import { fetchUser } from "../actions/userActions"
-
+import { fetchCurrentScore, fetchLastMonthScore, fetchTotalScore } from "../actions/scoreActions"
 import { connect } from "react-redux";
 
 @connect((store) => {
   return {
-    user: store.user.user
+    data: store.score
   }
 })
-
-/*import axios from "axios";
-
-
-store.dispatch({
-  type: "FETCH_USER",
-  payload: axios.post("https://bxconnect.herokuapp.com:443/api/employee/authenticate/", {
-    username: "ecastaneda",
-    password: "allstars"
-  })
-});*/
-
-/*store.dispatch((dispatch) => {
-  dispatch({type: "FETCH_USER"})
-  axios.post("https://bxconnect.herokuapp.com:443/api/employee/authenticate/", {
-    username: "ecastaneda",
-    password: "allstars"
-  }).then((response) => {
-    dispatch({type: "RECEIVE_USER", payload: response})
-  }).catch((error) => {
-    dispatch({type: "FETCH_ERROR", payload: error})
-  })
-//async
-  dispatch({type: "BAR"})
-});*/
-
 
 export default class Dashboard extends React.Component {
 
   componentWillMount() {
-    this.props.dispatch(fetchUser())
+    this.props.dispatch(fetchCurrentScore())
+    this.props.dispatch(fetchLastMonthScore())
+    this.props.dispatch(fetchTotalScore())
   }
 
   render () {
-    console.log(this.props.user.name)
+
+    const { currentMonth, lastMonth, total } = this.props.data;
+
     return (
       <div class="child-container">
         <h2>Quick Actions</h2>
 
         <Segment>
           <Grid stackable columns={3}>
-              <PopupBtn icon="send" content="Send notifications" />
-              <PopupBtn icon="bookmark" content="Give badges" />
-              <PopupBtn icon="group" content="Recommend groups" />
-
-              <PopupBtn icon="calendar plus" content="Create events" />
-              <PopupBtn icon="plus circle" content="Create badges" />
-              <PopupBtn icon="tags" content="Create tags" />
-
+              <PopupBtn href="#/notification" icon="send" content="Send notifications" />
+              <PopupBtn href="#/ranking" icon="bookmark" content="Give badges" />
+              <PopupBtn href="#/ranking" icon="group" content="Recommend groups" />
+              <PopupBtn href="#/ranking" icon="calendar plus" content="Create events" />
+              <PopupBtn href="#/ranking" icon="plus circle" content="Create badges" />
+              <PopupBtn href="#/ranking" icon="tags" content="Create tags" />
           </Grid>
         </Segment>
 
@@ -67,13 +42,13 @@ export default class Dashboard extends React.Component {
 
         <Grid stackable columns={3}>
           <Grid.Column>
-            <CardList header="Top current month" />
+            <CardList data={currentMonth} header="Top current month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top last month" />
+            <CardList data={lastMonth} header="Top last month" />
           </Grid.Column>
           <Grid.Column>
-            <CardList header="Top all time" />
+            <CardList data={total} header="Top all time" />
           </Grid.Column>
         </Grid>
 
