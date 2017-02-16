@@ -59,7 +59,7 @@ sudo make install
 2.Installing Yarn
 
 Choose the instructions according to your OS in the next URL
-[Instructions](https://yarnpkg.com/docs/install)
+[Instructions](https://yarnpkg.com/en/docs/install)
 
 3.Excute the yarn command to install dependencies
 
