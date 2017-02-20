@@ -26,7 +26,7 @@ class Layout extends Component {
         </Segment>
 
         <Sidebar.Pushable as={Segment}>
-          <Sidebar color="blue" as={Menu} animation='slide along' width='thin' visible={visibleLeft} icon='labeled' vertical inverted>
+          <Sidebar color="blue" as={Menu} animation='scale down' width='thin' visible={visibleLeft} icon='labeled' vertical inverted>
             <Menu.Item href="#/" name='Dashboard' active={activeItem === 'Dashboard'} onClick={this.handleItemClick} onMouseUp={this.toggleVisibilityLeft}>
               <Icon name='dashboard' />
               Dashboard
